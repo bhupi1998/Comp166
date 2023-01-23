@@ -9,16 +9,27 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <ctype.h>
 /*
  * 
  */
 int main() {
-    double userTemp;
-    char tempScale;
-    printf("Enter temperature please:");
-    scanf("Please enter temperature to convert: %lf%10s",&userTemp, &tempScale);
-    printf("temp input is: %lf and scale is %c", userTemp, tempScale);
+    double userTemp; // user temperature entered by user
+    char tempScaleInput[5]; //stores user input
+    char upperScaleInput[0]; //stores upper case converted input
+    printf("Enter a temperature followed by F, C or K. e.g., 24.5F :");
+    scanf("%lf%2s",&userTemp,tempScaleInput);
+    upperScaleInput[0] = toupper(tempScaleInput[0]);
+    // if input does not have a valid ask again
+    while(upperScaleInput[0] != 'F' && upperScaleInput[0] != 'C' && upperScaleInput[0] != 'K'){
+        userTemp=0;
+        printf("\nInvalid input!");
+        printf("\nEnter a temperature followed by F, C or K. e.g., 24.5F :");
+        scanf("%lf%2s",&userTemp,tempScaleInput);
+        upperScaleInput[0] = toupper(tempScaleInput[0]);
+    }
+    printf("input string is: %0.1lf %s\n", userTemp, upperScaleInput);
+    
     return (EXIT_SUCCESS);
 }
 
