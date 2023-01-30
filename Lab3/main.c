@@ -104,7 +104,7 @@ int main() {
     // display the data and do the calculations while height is above 0
     printf("\nTime    Height  Velocity\n");
     for(int i=0; (i<=100000)&&(height>0); i++){
-        printf("%0.2lf  %0.1lf  %0.2lf\n",time,height,velocity);    
+        printf("%6.2lf  %6.1lf  %6.2lf\n",time,height,velocity);    
         acceleration = netAcceleration(dragCoefficient, densityFunction(height), mass, crossSecArea, velocity);
         velocity = newVelocity(timeStep, acceleration, velocity);
         height = newHeight(height, timeStep, velocity);
