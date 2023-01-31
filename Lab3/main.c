@@ -16,7 +16,8 @@
 
 // defining global values
 #define g 9.807 //m/s^2
-#define airDensitySea 1.225 //kg/m^3
+#define AIR_DENSITY_SEA 1.225 //kg/m^3
+#define MAX_ITER 100000
 // tried to import as header file but it didn't work. i ask next time
 /*
  * Compute the density of dry air in SI units.
@@ -46,7 +47,7 @@ double densityFunction(double altitude) {
 //  by the object.
 double netAcceleration(double dragCoefficient, double density, int mass, double crossArea, double velocity){
     // drag force
-    double fDrag= 0.5*dragCoefficient*density*crossArea*pow(velocity,2);
+    double fDrag = 0.5*dragCoefficient*density*crossArea*pow(velocity,2);
     double fGravity = mass*g;
     // returns acceleration, it will never be negative as it will always be accelerating down or 0
     return (fGravity-fDrag)/mass;
@@ -68,6 +69,17 @@ double newVelocity(double timeStep, double acceleration, double initVelocity){
 double newHeight(double currentHeight, double timeStep, double velocity){
     return currentHeight-timeStep*velocity;
 }
+
+double getDouble (const char prompt[]) {
+    printf("%s", prompt);
+    double value;
+    if (scanf("%lf", &value) != 1) {
+        fprintf(stderr, "Invalid floating-point number\n");
+        exit (EXIT_FAILURE);
+    }
+    return value;
+}
+
 int main() {
     // terminalVelHyper is the terminal velocity found using the formula on hyperphysics
     double dragCoefficient, crossSecArea, timeStep, acceleration, height, terminalVelHyper;
@@ -79,42 +91,26 @@ int main() {
     // if something goes wrong this gets set to 1 and stops the loop.
     int error=0;
     //  requesting all inputs
-    printf("Enter the height in metres: ");
-    scanf("%lf", &height);
-    printf("\nEnter the mass in kg: ");
-    scanf("%d", &mass);
-    printf("\nEnter the drag coefficient: ");
-    scanf("%lf", &dragCoefficient);
-    printf("\nEnter the cross-sectional area: "); 
-    scanf("%lf", &crossSecArea);
-    printf("\nEnter the time step size: ");
-    scanf("%lf", &timeStep);   
+    height = getDouble("Enter the height in metres: ");
+    mass = getDouble("\nEnter the mass in kg: ");
+    dragCoefficient = getDouble("\nEnter the drag coefficient: ");
+    crossSecArea = getDouble("\nEnter the cross-sectional area: "); 
+    timeStep = getDouble("\nEnter the time step size: ");   
     
-    // invalid input has been entered. Stop the program
-    if(getchar() != '\n'){
-        while(getchar() != '\n'){
-        }
-        printf("\nInvalid Input. Goodbye\n");
-        error=1;
-    }
-    // if there's an error, stop the program
-    if(error){
-        exit(0);
-    }
     // display the data and do the calculations while height is above 0
     printf("\nTime    Height  Velocity\n");
-    for(int i=0; (i<=100000)&&(height>0); i++){
+    for(int i=0; (i<MAX_ITER)&&(height>0); i++){
+        time = i*timeStep;
         printf("%6.2lf  %6.1lf  %6.2lf\n",time,height,velocity);    
         acceleration = netAcceleration(dragCoefficient, densityFunction(height), mass, crossSecArea, velocity);
         velocity = newVelocity(timeStep, acceleration, velocity);
         height = newHeight(height, timeStep, velocity);
-        time+=timeStep;
     }
     // theoretical terminal velocity using the formula provided by
     //  hyperphysics @ http://hyperphysics.phy-astr.gsu.edu/hbase/airfri2.html
-    terminalVelHyper = sqrt((2*mass*g)/(dragCoefficient*airDensitySea*crossSecArea));
+    terminalVelHyper = sqrt((2.0*mass*g)/(dragCoefficient*AIR_DENSITY_SEA*crossSecArea));
     printf("Theoretical terminal velocity at sea level is %0.1lf m/s\n", terminalVelHyper);
+    
     return (EXIT_SUCCESS);
 }
-
 
