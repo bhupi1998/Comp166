@@ -26,7 +26,7 @@ int main() {
     double change, purchasePrice, amountTendered;
     
     purchasePrice = getPurchase("Enter the amount of the purchase: ");
-    amountTendered = getTendered("Enter the amount tendered: ", purchasePrice);
+    amountTendered = getTender("Enter the amount tendered: ", purchasePrice);
 
     change = amountTendered-purchasePrice;
     printf("Change Due is %.2lf \n", change);

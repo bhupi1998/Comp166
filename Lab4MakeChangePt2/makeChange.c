@@ -34,9 +34,13 @@ double changeItem (double change, const double itemValue, const char *singleName
 double getPurchase (const char prompt[]){
     printf("%s", prompt);
     double purchasePrice;
-    if(scanf("%lf", &purchasePrice) != 1){
+    // in the input is invalid or it's below 0 keep asking.
+    if((scanf("%lf", &purchasePrice) != 1) || purchasePrice < 0){
         while(getchar() != '\n' ){}
-        printf("makeChange Error: Not a valid value\n");
+        if(purchasePrice < 0 ){
+            printf("makeChange Error: The amounts must be positive number\n");
+        }else
+            printf("makeChange Error: Not a valid value\n");
         
         // Ask his thoughts on recursive functions
         purchasePrice = getPurchase(prompt);
@@ -45,9 +49,25 @@ double getPurchase (const char prompt[]){
     return purchasePrice;
     
 }
-double getTendered (const char prompt[], double purchasePrice){
+double getTender (const char prompt[], double purchasePrice){
     printf("%s", prompt);
     double tendered;
-    scanf("%lf", &tendered);
+    int inputResult = scanf("%lf", &tendered);
+    double change = tendered - purchasePrice;
+    // in the input is invalid or it's below 0 keep asking.
+    if(( inputResult != 1) || tendered < 0 || change < 0){
+        while(getchar() != '\n' ){}
+        if(tendered < 0 ){
+            printf("makeChange Error: The amounts must be positive number\n");
+        }else if(change < 0 && inputResult == 1){
+            double amountMissing = purchasePrice-tendered;
+            printf("makeChange Error: Please give me at least $%0.2lf more cash\n", amountMissing);
+        }else
+            printf("makeChange Error: Not a valid value\n");
+                
+        // Ask his thoughts on recursive functions
+        tendered = getTender(prompt, purchasePrice);
+    }
+    
     return tendered;
 }
