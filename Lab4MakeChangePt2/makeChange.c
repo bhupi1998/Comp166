@@ -16,6 +16,8 @@
  * 
  * It computes and prints how many bills in change should be returned in the given
  *  cash value.
+ * Author: Bhupinder Singh
+ * Date: 05/02/2023
  */
 double changeItem (double change, const double itemValue, const char *singleName, const char *pluralName){
     //billsToGive indicates how many coins or bills in the given 
@@ -30,12 +32,23 @@ double changeItem (double change, const double itemValue, const char *singleName
     }
     return changeLeft;
 }
-
-double getPurchase (const char prompt[]){
+/*getPurchase prompts a question and validates the user input to make sure it's acceptable
+ * 
+ * Inputs 
+ *  prompt: prompt message to ask the user
+ * Returns:
+ *  the purchase price entered by the user as a double
+ * Outputs:
+ *  Prints the prompt to the user and wait for input
+ * Author: Bhupinder Singh
+ * Date: 05/02/2023
+ */
+double getPurchase ( const char prompt[] ){
     printf("%s", prompt);
     double purchasePrice;
     // in the input is invalid or it's below 0 keep asking.
-    if((scanf("%lf", &purchasePrice) != 1) || purchasePrice < 0){
+    if(( scanf("%lf", &purchasePrice) != 1) || purchasePrice < 0){
+        // ensuring the stdin is cleared before using scanf
         while(getchar() != '\n' ){}
         if(purchasePrice < 0 ){
             printf("makeChange Error: The amounts must be positive number\n");
@@ -49,6 +62,19 @@ double getPurchase (const char prompt[]){
     return purchasePrice;
     
 }
+
+/*getPurchase prompts a question and validates the user input to make sure it's 
+ *  an acceptable input and that enough money is given for the purchase
+ * Inputs 
+ *  prompt: prompt message to ask the user
+ *  purchasePrice: cost of the item the user is buying
+ * Returns:
+ *  the amount tendered
+ * Outputs:
+ *  Prints the prompt to the user and wait for input
+ * Author: Bhupinder Singh
+ * Date: 05/02/2023
+ */
 double getTender (const char prompt[], double purchasePrice){
     printf("%s", prompt);
     double tendered;
@@ -56,6 +82,7 @@ double getTender (const char prompt[], double purchasePrice){
     double change = tendered - purchasePrice;
     // in the input is invalid or it's below 0 keep asking.
     if(( inputResult != 1) || tendered < 0 || change < 0){
+        // ensuring the stdin is cleared before using scanf
         while(getchar() != '\n' ){}
         if(tendered < 0 ){
             printf("makeChange Error: The amounts must be positive number\n");

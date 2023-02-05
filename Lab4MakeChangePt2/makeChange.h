@@ -24,10 +24,10 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#include <math.h>
-double changeItem (double change, const double itemValue, const char *singleName, const char *pluralName);
-double getPurchase (const char prompt[]);
-double getTender (const char prompt[], double purchasePrice);
-#define CURRENCY_DENOM 7
+    #include <math.h>
+    #define CURRENCY_DENOM 7
+    double changeItem (double change, const double itemValue, const char *singleName, const char *pluralName);
+    double getPurchase (const char prompt[]);
+    double getTender (const char prompt[], double purchasePrice);
 #endif /* MAKECHANGE_H */
 
