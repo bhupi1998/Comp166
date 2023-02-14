@@ -34,9 +34,7 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES= \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/makeChange.o
+OBJECTFILES=
 
 
 # C Compiler Flags
@@ -63,15 +61,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lab4makechangept2.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lab4makechangept2 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/main.o: main.c
+${OBJECTDIR}/main.c.gch: main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -std=c99 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -std=c99 -MMD -MP -MF "$@.d" -o "$@" main.c
 
-${OBJECTDIR}/makeChange.o: makeChange.c
+${OBJECTDIR}/makeChange.c.gch: makeChange.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -std=c99 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/makeChange.o makeChange.c
+	$(COMPILE.c) -g -std=c99 -MMD -MP -MF "$@.d" -o "$@" makeChange.c
 
 # Subprojects
 .build-subprojects:
