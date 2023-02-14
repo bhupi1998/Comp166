@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Lab5_Statistics_and_Files
+PROJECTNAME=Lab5_Stats
 
 # Active Configuration
 DEFAULTCONF=Debug

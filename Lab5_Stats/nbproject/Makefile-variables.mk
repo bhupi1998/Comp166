@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
-CND_ARTIFACT_NAME_Debug=lab5_statistics_and_files
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/lab5_statistics_and_files
+CND_ARTIFACT_NAME_Debug=lab5_stats
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/lab5_stats
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
-CND_PACKAGE_NAME_Debug=lab5statisticsandfiles.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/lab5statisticsandfiles.tar
+CND_PACKAGE_NAME_Debug=lab5stats.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/lab5stats.tar
 # Release configuration
 CND_PLATFORM_Release=MinGW-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
-CND_ARTIFACT_NAME_Release=lab5_statistics_and_files
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/lab5_statistics_and_files
+CND_ARTIFACT_NAME_Release=lab5_stats
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/lab5_stats
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
-CND_PACKAGE_NAME_Release=lab5statisticsandfiles.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/lab5statisticsandfiles.tar
+CND_PACKAGE_NAME_Release=lab5stats.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/lab5stats.tar
 #
 # include compiler specific variables
 #
