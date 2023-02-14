@@ -20,8 +20,5 @@ double mean(const double sum, const int count);
 /* Compute sample standard deviation from sum, sum of squares and count*/
 double ssdev(const double sum, const double sumsq, const int count);
 
-//this needs to be in main
-/*prints results to dest file.*/
-//static void printStats (FILE *dest, const int count, const double theMean, const double stddev);
 #endif /* STATISTICS_H */
 
