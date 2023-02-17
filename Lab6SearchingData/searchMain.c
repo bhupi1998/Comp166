@@ -42,28 +42,35 @@ int main(int argc, char** argv) {
         fprintf(stderr,"%s: Unable to read %d numbers from file \"%s\"\n",basename(argv[0]), fileIntegerSize, argv[1]);
         return EXIT_FAILURE;
     }
+    // closing file since everything has been saved in an array.
+    fclose(binaryFile);
+    
     int valToFind;
+    // ASK DALE:
+    //  12 characters is more than enough for any integer value
+    //  Issue is if more than 13 characters are made we'll start overflowing which causes
+    //      issues. Meets specified requirements but want to know better way.
+    char userInput[13];
     while(1){
         printf("Enter the integer value to find ('q' to quit) : ");
-        if(scanf("%d", &valToFind) == 0){
-            char exitVal[1];
-            scanf("%c", exitVal[0]);
-            if( exitVal == 'q' || exitVal == 'Q'){
-                printf("Oke Bye\n");
-                return EXIT_SUCCESS;
-            } else{
-                printf("Invalid Input\n");
+        scanf("%s", userInput);
+        if((sscanf(userInput, "%d", &valToFind)) != 1){
+            if((userInput[0] == 'q' || userInput[0] == 'Q') && userInput[1] == '\0'){
+            printf("%s: Bye \n", basename(argv[0]));
+            return EXIT_SUCCESS;
+            }
+            else{
+                printf("%s: Invalid Input\n", basename(argv[0]));
+            }
+        }else{
+            int valIndex = linearSearch (valToFind, dataIntArray, fileIntegerSize);
+            if(valIndex == -1){
+                printf("%d was not found\n", valToFind);
+            }else {
+                printf("%d was found at position %d\n", valToFind, valIndex);
             }
         }
-        int valIndex = linearSearch (valToFind, dataIntArray, fileIntegerSize);
-        if(valIndex == -1){
-            printf("%d was not found\n", valToFind);
-        }else {
-            printf("%d was found at position %d\n", valToFind, valIndex);
-        }
     }
-    // closing file
-    fclose(binaryFile);
     // freeing memory from the heap
     free(dataIntArray);
     return (EXIT_SUCCESS);

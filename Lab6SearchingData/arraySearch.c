@@ -7,5 +7,6 @@ int linearSearch (const int value, const int numbers[], const int nNumbers){
             return i;
         }
     }
+    // nothing found, returning -1
     return -1;
 }
