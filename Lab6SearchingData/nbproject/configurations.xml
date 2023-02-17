@@ -40,6 +40,9 @@
         <cTool>
           <standard>3</standard>
         </cTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lab6searchingdata</output>
+        </linkerTool>
       </compileType>
       <item path="arraySearch.c" ex="false" tool="0" flavor2="0">
       </item>
