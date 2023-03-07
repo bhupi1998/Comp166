@@ -14,7 +14,7 @@
 #ifndef POINTERLAB_H
 #define POINTERLAB_H
 
-#define N_NUMS 10 // number of values in the array
+#define N_NUMS 20 // number of values in the array
 
 typedef int WORD; // format of the values and array
 #define WORD_FORMAT "%d"
