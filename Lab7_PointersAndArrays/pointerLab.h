@@ -14,11 +14,13 @@
 #ifndef POINTERLAB_H
 #define POINTERLAB_H
 
+#include <stdio.h>
+
+
+typedef double WORD; // format of the values and array
+#define WORD_FORMAT "%0.0lf"
+
 #define N_NUMS 20 // number of values in the array
-
-typedef int WORD; // format of the values and array
-#define WORD_FORMAT "%d"
-
 static const WORD START_VAL = 1011; // start value of the array
 
 /* Swap the two values pointed at by x and y*/

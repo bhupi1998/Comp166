@@ -1,3 +1,4 @@
+
 #include "pointerLab.h"
 
 /* Swap the two values pointed at by x and y*/
@@ -22,11 +23,13 @@ void printVector (const WORD *vec, const int N){
  * Prints an extra space after each word*/
 void printBytes (const WORD *vec, const int N){
     for(int i=0; i < N; i++){
-        char *val = vec + i;
+        // hhu wants an unsigned char, need an unsigned char pointer
+        // typecasting the WORD vector as an unsigned char
+        unsigned char *val = (unsigned char*)(vec + i);
         for(int k=0; k<sizeof(WORD);k++){
             // don't understand why i need to cast it as an unsigned char
             // when val is defined as a char pointer.
-            printf("%hhu ", *((unsigned char*)val+k));
+            printf("%hhu ", *val++);
         }
         printf(" ");
     }
@@ -38,11 +41,11 @@ void printBytes (const WORD *vec, const int N){
  * Prints an extra space after each word */
 void printBytesReverseEndian (const WORD *vec, const int N){
     for(int i=0; i < N; i++){
-        char *val = vec + i;
+        unsigned char *val = (unsigned char*)(vec + i);
         for(int k=sizeof(WORD)-1; k>=0;k--){
             // don't understand why i need to cast it as an unsigned char
             // when val is defined as a char pointer.
-            printf("%hhu ", *((unsigned char*)val+k));
+            printf("%hhu ", *val++);
         }
         printf(" ");
     }
