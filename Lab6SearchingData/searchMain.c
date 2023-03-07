@@ -46,10 +46,7 @@ int main(int argc, char** argv) {
     fclose(binaryFile);
 
     int valToFind;
-    // ASK DALE:
-    //  12 characters is more than enough for any integer value
-    //  Issue is if more than 13 characters are made we'll start overflowing which causes
-    //      issues. Meets specified requirements but want to know better way.
+    // see solution below
     char userInput[13];
     while (1) {
         printf("Enter the integer value to find ('q' to quit) : ");
@@ -75,3 +72,49 @@ int main(int argc, char** argv) {
     return (EXIT_SUCCESS);
 }
 
+///*
+// * An example of lots of error handling when reading an integer
+// * value using strtol()
+// *
+// * (error messages should have gone to stderr).
+// *
+// * Dale Shpak, March 22, 2021
+// */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <errno.h>
+//#include <string.h>
+//#include <limits.h>
+//
+//int main() {
+//    printf("On this computer, a long is %d bytes and the maximum value is %ld\n", sizeof(long), LONG_MAX);
+//    while (1) {
+//	printf("Enter an integer value (that can be insanely huge): ");
+//	char s[101];
+//	scanf("%100s", s); // Read a maximum of 100 chars.  Safety mechanism for the array s.
+//
+//	char *endPtr;
+//	errno = 0; // Reset global error number
+//	long val = strtol(s, &endPtr, 10);
+//	int errCode = errno; // save the error number
+//	printf("Value read is: %ld", val);
+//	fflush(stdout);
+//	if (errCode == 0) {
+//	    printf(" which will fit into a long\n");
+//	} else{
+//	    printf(" but an error was detected: %s\n", strerror(errCode));
+//	}
+//
+//	if ((endPtr - s) < strlen(s)) {
+//	    printf(" Stopped after reading %ld characters\n", (endPtr - s));
+//	}
+//	// Check if this long value will fit into an int
+//	if (val > INT_MAX || val < INT_MIN) {
+//	    printf("%s won't fit into a regular int\n", s);
+//	} else {
+//	    printf("%s will fit into a regular int\n", s);
+//	}
+//    }
+//    return EXIT_SUCCESS;
+//}
