@@ -27,8 +27,6 @@ void printBytes (const WORD *vec, const int N){
         // typecasting the WORD vector as an unsigned char
         unsigned char *val = (unsigned char*)(vec + i);
         for(int k=0; k<sizeof(WORD);k++){
-            // don't understand why i need to cast it as an unsigned char
-            // when val is defined as a char pointer.
             printf("%hhu ", *val++);
         }
         printf(" ");
