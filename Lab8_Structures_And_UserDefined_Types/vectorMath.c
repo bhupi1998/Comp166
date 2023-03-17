@@ -38,6 +38,7 @@ Vector *vectorMath ( const Vector v1, const Vector v2, Vector *resultPtr, const 
         default:
             return NULL;
     }
+    return resultPtr;
 }
 
 /*
@@ -46,6 +47,8 @@ Vector *vectorMath ( const Vector v1, const Vector v2, Vector *resultPtr, const 
  */
 void printVector (const Vector v, FILE *stream){
     for(int i = 0; i<v.n;i++){
+        // not sure how use pointer notation with post-increment.
+        // Future bp problem
         fprintf(stream,WORD_FORMAT, v.x[i]);
     }
     fprintf(stream,"\n");

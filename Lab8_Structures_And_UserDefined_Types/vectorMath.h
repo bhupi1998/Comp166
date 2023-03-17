@@ -10,9 +10,15 @@
 
 #include <stdio.h>
 
-#define MAX_LENGTH 10
+#ifndef Word
 #define Word double
+#endif
+
+#ifndef WORD_FORMAT
 #define WORD_FORMAT "%10.4lf"
+#endif
+
+#define MAX_LENGTH 10
 
 typedef struct Vector{
     int n; // number of values currently stored in x

@@ -39,6 +39,7 @@
       <compileType>
         <cTool>
           <standard>3</standard>
+          <commandLine>-DWORD=float -DWORD_FORMAT=\"%2.1f\ \"</commandLine>
         </cTool>
       </compileType>
       <item path="main.c" ex="false" tool="0" flavor2="0">

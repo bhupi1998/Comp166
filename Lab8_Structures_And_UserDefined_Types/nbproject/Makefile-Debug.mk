@@ -40,7 +40,7 @@ OBJECTFILES= \
 
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=-DWORD=float -DWORD_FORMAT=\"%2.1f\ \"
 
 # CC Compiler Flags
 CCFLAGS=
