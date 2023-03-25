@@ -46,20 +46,10 @@ Vector *vectorMath ( const Vector v1, const Vector v2, Vector *resultPtr, const 
  * to the specified stream 
  */
 void printVector (const Vector v, FILE *stream){
+    const double *structArray = v.x; 
     for(int i = 0; i<v.n;i++){
-        // not sure how use pointer notation with post-increment.
-        // Future bp problem
-        fprintf(stream,WORD_FORMAT, v.x[i]);
+        fprintf(stream,WORD_FORMAT, *structArray++);
     }
     fprintf(stream,"\n");
 }
 
-//// Adds all the length values to the vector
-//void addVectorValuesToVector(Vector *v, Word *array){
-////    int i = 0;
-////    while(array[i]){
-////        v->x[i] = array[i];
-////        i++;
-////    }
-//    v->x[0]=10;
-//}
