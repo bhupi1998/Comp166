@@ -2,16 +2,6 @@
 #include "queue.h"
 /* Add an item to the rear of the dynamically-allocated queue.
  * Returns:  pointer to the item if successful, NULL if not 
- * typedef struct {
-    ListNode *front;
-    ListNode *rear;
-    int size; // Number of items currently in the queue
-} Queue;
-
- * typedef struct listNode {
-    struct listNode *next;
-    ItemType *dataPtr;
-} ListNode;
  */
 
 ItemType *enqueue (Queue *queuePtr, ItemType *newItem){
@@ -30,19 +20,37 @@ ItemType *enqueue (Queue *queuePtr, ItemType *newItem){
         queuePtr->rear = newNode; // update the queue's rear pointer 
         newNode->next = NULL; // set next pointer to null
     }
-    (queuePtr->size)++;
+    //(queuePtr->size)++;
     return newNode->dataPtr;
 }
 
 /* Removes an item from the front of the queue.
  * Returns:  pointer to the item if successful, NULL if empty */
 ItemType *dequeue (Queue *queuePtr){
+    if(queuePtr->front == NULL){
+        return NULL;
+    }
+    ListNode *nodeToDelete = queuePtr->front;
+    queuePtr->front = nodeToDelete->next;
+    return nodeToDelete->dataPtr;
 }
 
 /* Returns:  number of items in the queue */
 int queueSize (const Queue queue){
+    int nItem = 0;
+    ListNode *currentNode = queue.front;
+    while(currentNode != NULL){
+        nItem++;
+        currentNode = currentNode->next;
+    }
+    return nItem;
 }
 
 /* Print the contents of the queue to the specified stream */
 void printQueue (const Queue queue, FILE *stream){
+    ListNode *currentNode = queue.front;
+    while(currentNode != NULL){
+        fprintf(stream, ITEM_FORMAT "\n", *(currentNode->dataPtr));
+        currentNode = currentNode->next;
+    }
 }
