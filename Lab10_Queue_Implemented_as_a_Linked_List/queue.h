@@ -12,10 +12,13 @@
 typedef int ItemType;
 #define ITEM_PROMPT "an integer"
 #define ITEM_FORMAT "%d"
+#define FRONT 0
+#define REAR 1
 
 // A node for a singly-linked list
 typedef struct listNode {
     struct listNode *next;
+    struct listNode *rear;
     ItemType *dataPtr;
 } ListNode;
 
@@ -27,12 +30,14 @@ typedef struct {
 } Queue;
 
 /* Add an item to the rear of the dynamically-allocated queue.
+ * queueEnd is used to pick which side of the queue to add from
  * Returns:  pointer to the item if successful, NULL if not */
-ItemType *enqueue (Queue *queuePtr, ItemType *newItem);
+ItemType *enqueue (Queue *queuePtr, ItemType *newItem, int queueEnd);
 
 /* Removes an item from the front of the queue.
+ * queueEnd is used to pick which side of the queue to remove from
  * Returns:  pointer to the item if successful, NULL if empty */
-ItemType *dequeue (Queue *queuePtr);
+ItemType *dequeue (Queue *queuePtr, int queueEnd);
 
 /* Returns:  number of items in the queue */
 int queueSize (const Queue queue);
