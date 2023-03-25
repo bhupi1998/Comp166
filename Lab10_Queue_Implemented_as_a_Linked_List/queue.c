@@ -19,18 +19,22 @@ ItemType *enqueue(Queue *queuePtr, ItemType *newItem, int queueEnd) {
         newNode->next = NULL; // set next pointer to null
         newNode->rear = NULL;
     } else {
-        if (queueEnd == REAR) {
-            queuePtr->rear->next = newNode;
-            newNode->rear = queuePtr->rear;
-            queuePtr->rear = newNode; // update the queue's rear pointer 
-            newNode->next = NULL; // set next pointer to null
-        } else if (queueEnd == FRONT) {
-            newNode->next = queuePtr->front;
-            queuePtr->front->rear = newNode;
-            newNode->rear = NULL;
-            queuePtr->front = newNode;
-        } else {
-            return NULL;
+        switch (queueEnd) {
+            case REAR:
+                queuePtr->rear->next = newNode;
+                newNode->rear = queuePtr->rear;
+                queuePtr->rear = newNode; // update the queue's rear pointer 
+                newNode->next = NULL; // set next pointer to null
+                break;
+            case FRONT:
+                newNode->next = queuePtr->front;
+                queuePtr->front->rear = newNode;
+                newNode->rear = NULL;
+                queuePtr->front = newNode;
+                break;
+            default:
+                return EXIT_FAILURE;
+
         }
     }
     //(queuePtr->size)++;
@@ -44,27 +48,31 @@ ItemType *dequeue(Queue *queuePtr, int queueEnd) {
         return NULL;
     }
     ListNode *nodeToDelete;
-    if (queueEnd == FRONT) {
-        nodeToDelete = queuePtr->front;
-        queuePtr->front = nodeToDelete->next;
-        if (queuePtr->front == NULL) {
-            queuePtr->rear = NULL;
-        }
-        if(nodeToDelete->next != NULL){
-            nodeToDelete->next->rear = NULL;
-        }
-    } else if (queueEnd == REAR) {
-        nodeToDelete = queuePtr->rear;
-        queuePtr->rear = nodeToDelete->rear;
-        if (queuePtr->rear == NULL) {
-            queuePtr->front = NULL;
-        }
-        if(nodeToDelete->rear != NULL){
-            nodeToDelete->rear->next = NULL;
-        }
-    } else {
-        return EXIT_FAILURE;
+    switch (queueEnd) {
+        case FRONT:
+            nodeToDelete = queuePtr->front;
+            queuePtr->front = nodeToDelete->next;
+            if (queuePtr->front == NULL) {
+                queuePtr->rear = NULL;
+            }
+            if (nodeToDelete->next != NULL) {
+                nodeToDelete->next->rear = NULL;
+            }
+            break;
+        case REAR:
+            nodeToDelete = queuePtr->rear;
+            queuePtr->rear = nodeToDelete->rear;
+            if (queuePtr->rear == NULL) {
+                queuePtr->front = NULL;
+            }
+            if (nodeToDelete->rear != NULL) {
+                nodeToDelete->rear->next = NULL;
+            }
+            break;
+        default:
+            return EXIT_FAILURE;
     }
+
     return nodeToDelete->dataPtr;
 }
 
