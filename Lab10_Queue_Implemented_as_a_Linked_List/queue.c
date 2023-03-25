@@ -6,20 +6,21 @@
 
 ItemType *enqueue (Queue *queuePtr, ItemType *newItem){
     ListNode *newNode = (ListNode*)malloc(sizeof(ListNode));
+    if(newNode == NULL){
+        return NULL;
+    }
     newNode->dataPtr=newItem; // add data pointer to node
     
     // need to update the next pointer of whatever is already in the last
-    if(queuePtr->rear == NULL){
+    if(queuePtr->rear == NULL && queuePtr->front == NULL){
         queuePtr->rear = newNode;
-    }
-    if(queuePtr->front == NULL){
         queuePtr->front = newNode;
     }
     else{
         queuePtr->rear->next= newNode;
         queuePtr->rear = newNode; // update the queue's rear pointer 
-        newNode->next = NULL; // set next pointer to null
     }
+    newNode->next = NULL; // set next pointer to null
     //(queuePtr->size)++;
     return newNode->dataPtr;
 }
@@ -31,7 +32,13 @@ ItemType *dequeue (Queue *queuePtr){
         return NULL;
     }
     ListNode *nodeToDelete = queuePtr->front;
+    if(nodeToDelete == NULL){
+        return NULL;
+    }
     queuePtr->front = nodeToDelete->next;
+    if(queuePtr->front == NULL){
+        queuePtr->rear = NULL;
+    }
     return nodeToDelete->dataPtr;
 }
 
