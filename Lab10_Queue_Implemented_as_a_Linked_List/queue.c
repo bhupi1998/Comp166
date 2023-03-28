@@ -33,11 +33,10 @@ ItemType *enqueue(Queue *queuePtr, ItemType *newItem, int queueEnd) {
                 queuePtr->front = newNode;
                 break;
             default:
-                return EXIT_FAILURE;
+                return NULL;
 
         }
     }
-    //(queuePtr->size)++;
     return newNode->dataPtr;
 }
 
@@ -70,10 +69,11 @@ ItemType *dequeue(Queue *queuePtr, int queueEnd) {
             }
             break;
         default:
-            return EXIT_FAILURE;
+            return NULL;
     }
-
-    return nodeToDelete->dataPtr;
+    void *temp = nodeToDelete->dataPtr;
+    free(nodeToDelete);
+    return temp;
 }
 
 /* Returns:  number of items in the queue */
