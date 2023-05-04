@@ -25,11 +25,11 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" binaryNumbers.dat 100</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" binaryNumbers.dat 10000</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" binaryNumbers.dat 1000</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" binaryNumbers.dat 100</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" binaryNumbers.dat 100</runcommand>
+        <runcommand>"${OUTPUT_PATH}" binaryNumbers.dat 1000</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>1</console-type>
