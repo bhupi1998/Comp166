@@ -1,2 +1,3 @@
 # Comp166
-All done. 100% lab grade
+Labs for COMP166 course at Camousun college. All programmed in C
+
